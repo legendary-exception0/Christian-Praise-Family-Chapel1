@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Offering Page</title>
+    <link rel="stylesheet" href="offering_seed.css">
+</head>
+<body>
+    <header>
+        <img src="images/church logo.jpg" alt="Church Logo">
+        <h1>Christian Praise Family Chapel</h1>
+    </header>
+
+    <main>
+        <div>Offering Sheet</div>
+        <section>
+            <form action="#" method="post" id="form">
+                <label for="Offering_day">Day:</label>
+                <input type="date" name="Offering_day" id="Offering_day" required>
+
+                <label for="Offering_amount">Amount:</label>
+                <input type="number" name="Offering_amount" id="Offering_amount" required>
+
+                <input type="submit" value="Add Offering" id="submit">
+            </form>
+        </section>
+    </main>
+
+    <script>
+        document.getElementById('form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = new URLSearchParams(formData);
+
+            fetch('offering.php', {
+                method: 'POST',
+                body: data
+            })
+            .then(response => response.json())
+            .then(result => {
+                if (result.success) {
+                    alert('Offering added successfully');
+                } else {
+                    alert('Error: ' + result.error);
+                }
+            })
+            .catch(error => {
+                console.error('Fetch error:', error);
+                alert('There was a problem with the fetch operation.');
+            });
+        });
+    </script>
+</body>
+</html>
