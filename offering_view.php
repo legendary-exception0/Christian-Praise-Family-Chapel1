@@ -12,7 +12,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT id, date, amount FROM add_offering";
+$sql = "SELECT id, day, amount FROM add_offering";
 $result = $conn->query($sql);
 
 $offering = array();

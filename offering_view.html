@@ -5,14 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="fetch_script.js"></script>
+    <link rel="stylesheet" href="view.css">
 </head>
 <body>
+    <header>
+        <img src="images/church logo.jpg">
+        <h1>Christian Praise Family Chapel</h1>
+    </header>
+
     <table id="offering_table" border="2">
         <tr>
             <th>ID</th>
             <th>Date</th>
             <th>Amount</th>
         </tr>
+
+        <button onclick="post_offering(), hide_view()" id="but">View</button>
     </table>
 </body>
 </html>

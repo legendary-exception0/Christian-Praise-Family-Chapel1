@@ -1,3 +1,13 @@
+// document.addEventListener("DOMContentLoaded", () => {
+//     hide_view();
+// });
+
+function hide_view(){
+    var but = document.getElementById('but') ;
+
+    but.style.display = 'none';
+}
+
 function post_member() {
     fetch('membership_view.php')
         .then(response => response.json())
@@ -28,6 +38,9 @@ function post_offering() {
         .then(response => response.json())
         .then(data => {
             const table = document.getElementById('offering_table');
+            // Clear existing rows (except the header)
+            table.querySelectorAll('tr:not(:first-child)').forEach(row => row.remove());
+            
             data.forEach(offering => {
                 const row = table.insertRow();
                 const cell1 = row.insertCell(0);
@@ -35,12 +48,13 @@ function post_offering() {
                 const cell3 = row.insertCell(2);
 
                 cell1.innerHTML = offering.id;
-                cell2.innerHTML = offering.day;
+                cell2.innerHTML = offering.day; // Use 'date' instead of 'day'
                 cell3.innerHTML = offering.amount;
             });
         })
         .catch(error => console.error('Error fetching data:', error));
 }
+
 
 function post_seed() {
     fetch('seed_view.php')

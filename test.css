@@ -1,0 +1,43 @@
+*{
+    padding: 0px;
+}
+main{
+    width: 100%;
+    height: 30%;
+    border: 2px dashed red;
+    display: block;
+}
+
+div{
+    width: 100%;
+    height: 30%;
+    border: 2px solid blue;
+    margin: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+html{
+    height: 100%;
+    width: 100%;
+}
+
+body{
+    height: 100%;
+    width: 100%;
+}
+
+a{
+    color: green;
+
+}
+
+a:link{
+    color: orange;
+}
+
+a:hover{
+    color: yellow;
+}

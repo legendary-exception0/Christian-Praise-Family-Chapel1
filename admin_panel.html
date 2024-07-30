@@ -5,6 +5,36 @@
             Admin Panel
         </title>
         <link rel="stylesheet" href="admin_panel.css">
+        <script>
+            function redirectToSheet() {
+                const view = document.getElementById('view').value;
+                let url = '';
+    
+                switch(view) {
+                    case 'Membership':
+                        url = 'membership_view.php';
+                        break;
+                    case 'Tithe':
+                        url = 'tithe_view.php';
+                        break;
+                    case 'Offering':
+                        url = 'offering_view.php';
+                        break;
+                    case 'Seed':
+                        url = 'seed_view.php';
+                        break;
+                    case 'Welfare':
+                        url = 'welfare_view.php';
+                        break;
+                    default:
+                        url = '';
+                }
+    
+                if (url) {
+                    window.location.href = url;
+                }
+            }
+        </script>
     </head>
 
     <body>
@@ -14,7 +44,7 @@
                 <h1>Christian Praise Family Chapel</h1>
                 <form id="sheet">
                     <label for="view">View sheet of</label>
-                    <select id="view" name="view">
+                    <select id="view" name="view" onchange="redirectToSheet()">
                         <option value="Membership">Membersip</option>
                         <option value="Tithe">Tithe</option>
                         <option value="Offering">Offering</option>

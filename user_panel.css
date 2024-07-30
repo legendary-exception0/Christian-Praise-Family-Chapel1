@@ -38,9 +38,10 @@ header div img{
     width: 10%;
 }
 
+/*this is to style the header element*/
 header h2{
     align-self: center;
-    /* font-family: monospace; */
+    /* font-family: monospace;  */
     /* font-size: 30px; */
 }
 
