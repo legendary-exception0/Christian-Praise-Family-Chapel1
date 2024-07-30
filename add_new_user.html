@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="add_user.css">
+</head>
+<body>
+    <header>
+        <img src="images/church logo.jpg">
+        <h1>Christian Praise Family Chapel</h1>
+    </header>
+
+    <main>
+        <form id="form">
+            <label for="username">Username: </label>
+            <input type="text" name="username" placeholder="New Username" id="username">
+
+            <label for="password">Password: </label>
+            <input type="password" name="password" placeholder="Password" id="password">
+
+            <input type="submit" value="Add User" id="submit">
+        </form>
+    </main>
+
+    <script>
+        document.getElementById('form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = new URLSearchParams(formData);
+
+            fetch('add_user.php', {
+                method: 'POST',
+                body: data
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(result => {
+                if (result.success) {
+                    alert('User added successfully');
+                } else {
+                    alert('Error: ' + result.error);
+                }
+            })
+            .catch(error => {
+                console.error('Fetch error:', error);
+                alert('There was a problem with the fetch operation.');
+            });
+        });
+    </script>
+</body>
+</html>

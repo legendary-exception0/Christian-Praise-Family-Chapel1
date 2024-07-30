@@ -15,11 +15,11 @@
                 <form id="sheet">
                     <label for="view">View sheet of</label>
                     <select id="view" name="view">
-                        <option value="">Membersip</option>
-                        <option value="">Tithe</option>
-                        <option value="">Offering</option>
-                        <option value="">Seed</option>
-                        <option value="">Welfare</option>
+                        <option value="Membership">Membersip</option>
+                        <option value="Tithe">Tithe</option>
+                        <option value="Offering">Offering</option>
+                        <option value="Seed">Seed</option>
+                        <option value="Welfare">Welfare</option>
                     </select>
                 </form>
             </div>
@@ -27,13 +27,14 @@
         </header>
 
         <main>
-            <a href="#"><button>MEMBERSHIP</button></a>
-            <a href="#"><button>TITHES</button></a>
-            <a href="#"><button>OFFERINGS</button></a>
-            <a href="#"><button>SEEDS</button></a>
+            <a href="membership.html"><button>MEMBERSHIP</button></a>
+            <a href="Tithes.html"><button>TITHES</button></a>
+            <a href="offering.html"><button>OFFERINGS</button></a>
+            <a href="seed.html"><button>SEEDS</button></a>
+            <a href="welfare.html"><button>WELFARE</button></a>
             <section>
-                <a href="#"><button>Change Password</button></a>
-                <a href="#"><button>Add New User</button></a>
+                <a href="change_password.html"><button>Change Password</button></a>
+                <a href="add_new_user.html"><button>Add New User</button></a>
             </section>
             <form action="/search" method="GET">
                 <input type="text" name="query" placeholder="Type here...." id="search_text">
@@ -41,7 +42,7 @@
             </form>
         </main>
         <footer>
-            <button>Log out</button>
+            <a href="logout.php"><button>Log out</button></a>
         </footer>
     </body>
 </html>
