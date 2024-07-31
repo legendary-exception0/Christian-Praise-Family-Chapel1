@@ -45,6 +45,7 @@
                 <form id="sheet">
                     <label for="view">View sheet of</label>
                     <select id="view" name="view" onchange="redirectToSheet()">
+                        <option value="">View....</option>
                         <option value="Membership">Membersip</option>
                         <option value="Tithe">Tithe</option>
                         <option value="Offering">Offering</option>
@@ -62,17 +63,22 @@
             <a href="offering.html"><button>OFFERINGS</button></a>
             <a href="seed.html"><button>SEEDS</button></a>
             <a href="welfare.html"><button>WELFARE</button></a>
+
             <section>
                 <a href="change_password.html"><button>Change Password</button></a>
                 <a href="add_new_user.html"><button>Add New User</button></a>
             </section>
-            <form action="/search" method="GET">
+
+            <form action="search.php" method="GET">
                 <input type="text" name="query" placeholder="Type here...." id="search_text">
-                <input type="submit" value="search">
+                <input type="submit" value="search" id="search_button">
             </form>
         </main>
+
         <footer>
             <a href="logout.php"><button>Log out</button></a>
         </footer>
+
+        <script src="search.js"></script>
     </body>
 </html>

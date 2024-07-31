@@ -1,5 +1,5 @@
 <?php
-// search.php
+// fetch_data.php
 header('Content-Type: application/json');
 
 // Allow requests from any origin
@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
     exit; // Stop processing the request
 }
 
-// Your existing PHP code
+// Database credentials
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -25,27 +25,35 @@ $dbname = "church";
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
+// Check connection
 if ($conn->connect_error) {
     die(json_encode(['success' => false, 'error' => 'Connection failed: ' . $conn->connect_error]));
 }
 
-if (isset($_GET['query'])) {
-    $query = $_GET['query'];
+if (isset($_GET['search_text'])) {
+    $query = $_GET['search_text'];
 
     // Prevent SQL injection
     $query = $conn->real_escape_string($query);
 
-    // Perform the query
+    // Perform the search query
     $sql = "SELECT * FROM addmember WHERE name LIKE '%$query%'";
     $result = $conn->query($sql);
 
-    if ($result->num_rows > 0) {
-        // Output data of each row
-        while($row = $result->fetch_assoc()) {
-            echo "id: " . $row["id"]. " - Name: " . $row["name"]. "<br>";
+    if ($result) {
+        // Create an array to hold the result data
+        $data = [];
+
+        // Fetch all results
+        while ($row = $result->fetch_assoc()) {
+            $data[] = $row;
         }
+
+        // Respond with the search results
+        echo json_encode(['success' => true, 'results' => $data]);
+
     } else {
-        echo "0 results";
+        echo json_encode(['success' => false, 'error' => 'Query failed: ' . $conn->error]);
     }
 }
 

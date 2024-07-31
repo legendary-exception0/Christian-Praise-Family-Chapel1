@@ -5,6 +5,36 @@
             User Panel
         </title>
         <link rel="stylesheet" href="user_panel.css">
+        <script>
+            function redirectToSheet() {
+                const view = document.getElementById('view').value;
+                let url = '';
+    
+                switch(view) {
+                    case 'Membership':
+                        url = 'membership_view.php';
+                        break;
+                    case 'Tithe':
+                        url = 'tithe_view.php';
+                        break;
+                    case 'Offering':
+                        url = 'offering_view.php';
+                        break;
+                    case 'Seed':
+                        url = 'seed_view.php';
+                        break;
+                    case 'Welfare':
+                        url = 'welfare_view.php';
+                        break;
+                    default:
+                        url = '';
+                }
+    
+                if (url) {
+                    window.location.href = url;
+                }
+            }
+        </script>
     </head>
 
     <body>
@@ -12,6 +42,17 @@
             <div>
                 <img src="images/church logo.jpg">
                 <h1>Christian Praise Family Chapel</h1>
+                <form id="sheet">
+                    <label for="view">View sheet of</label>
+                    <select id="view" name="view" onchange="redirectToSheet()">
+                        <option value="">View....</option>
+                        <option value="Membership">Membersip</option>
+                        <option value="Tithe">Tithe</option>
+                        <option value="Offering">Offering</option>
+                        <option value="Seed">Seed</option>
+                        <option value="Welfare">Welfare</option>
+                    </select>
+                </form>
             </div>
             <h2>CONTROL PANEL</h2>
         </header>
@@ -24,11 +65,13 @@
             <a href="welfare.html"><button>WELFARE</button></a>
             <form action="search.php" method="GET">
                 <input type="text" name="query" placeholder="Type here...." id="search_text">
-                <input type="submit" value="search">
+                <input type="submit" value="search" id="search_button">
             </form>
         </main>
         <footer>
             <a href="logout.php"><button>Log out</button></a>
         </footer>
+        
+        <script src="search.js"></script>
     </body>
 </html>

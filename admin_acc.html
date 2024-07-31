@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add User</title>
+    <title>Add Admin</title>
     <link rel="stylesheet" href="add_user.css">
 </head>
 <body>
@@ -14,13 +14,13 @@
 
     <main>
         <form id="form">
-            <label for="username">Username: </label>
-            <input type="text" name="username" placeholder="New Username" id="username">
+            <label for="admin_name">Username: </label>
+            <input type="text" name="admin_name" placeholder="Admin Username" id="admin_name">
 
             <label for="password">Password: </label>
             <input type="password" name="password" placeholder="Password" id="password">
 
-            <input type="submit" value="Add User" id="submit">
+            <input type="submit" value="Add Admin Account" id="submit">
         </form>
     </main>
 
@@ -31,7 +31,7 @@
             const formData = new FormData(this);
             const data = new URLSearchParams(formData);
 
-            fetch('add_user.php', {
+            fetch('add_admin.php', {
                 method: 'POST',
                 body: data
             })
@@ -43,7 +43,7 @@
             })
             .then(result => {
                 if (result.success) {
-                    alert('User added successfully');
+                    alert('Admin added successfully');
                 } else {
                     alert('Error: ' + result.error);
                 }
