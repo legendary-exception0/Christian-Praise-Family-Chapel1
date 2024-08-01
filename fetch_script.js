@@ -48,7 +48,7 @@ function post_offering() {
                 const cell3 = row.insertCell(2);
 
                 cell1.innerHTML = offering.id;
-                cell2.innerHTML = offering.day; // Use 'date' instead of 'day'
+                cell2.innerHTML = offering.day;
                 cell3.innerHTML = offering.amount;
             });
         })
@@ -124,3 +124,9 @@ function post_welfare() {
         })
         .catch(error => console.error('Error fetching data:', error));
 }
+
+// document.getElementById('members').addEventListener('click',post_member)
+// document.getElementById('tithes').addEventListener('click',post_tithe)
+// document.getElementById('offerings').addEventListener('click',post_offering)
+// document.getElementById('seeds').addEventListener('click',post_seed)
+// document.getElementById('welfares').addEventListener('click',post_welfare)

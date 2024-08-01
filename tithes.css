@@ -26,7 +26,12 @@ header{
     /* border: 2px red solid; */
 }
 
-header img{
+header a img{
+    height: 100%;
+    width: 100%;
+}
+
+header a{
     height: 100%;
     width: 10%;
 }

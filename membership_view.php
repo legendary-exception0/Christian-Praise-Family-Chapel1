@@ -23,7 +23,7 @@ if ($result->num_rows > 0) {
     }
 } 
 
-echo json_encode($offering);
+echo json_encode($members);
 
 $conn->close();
 ?>

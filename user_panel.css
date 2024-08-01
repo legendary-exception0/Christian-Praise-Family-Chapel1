@@ -28,14 +28,17 @@ header div{
     width: 100%;
     height: 70%;
     display: flex;
-    gap: 5px;
+    gap: 10px;
     align-items: center;
     justify-content: center;
+    position: static;
+    /* border: red 2px solid; */
 }
 
 header div img{
     height: 90%;
     width: 10%;
+    margin-left: 10%;
 }
 
 /*this is to style the header element*/
@@ -43,6 +46,28 @@ header h2{
     align-self: center;
     /* font-family: monospace;  */
     /* font-size: 30px; */
+}
+
+#sheet{
+    /* align-self:flex-end; */
+    /* border: 1px red solid; */
+    height: 100%;
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 20px;
+    position: relative;
+    left: 10rem;
+    /* margin-left: 30%; */
+    /* align-self: stretch; */
+    /* margin-left: 5rem; */
+}
+
+#sheet select{
+    height: 2rem;
+    width: 10rem;
 }
 
 main{

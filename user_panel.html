@@ -12,19 +12,19 @@
     
                 switch(view) {
                     case 'Membership':
-                        url = 'membership_view.php';
+                        url = 'membership_view.html';
                         break;
                     case 'Tithe':
-                        url = 'tithe_view.php';
+                        url = 'tithe_view.html';
                         break;
                     case 'Offering':
-                        url = 'offering_view.php';
+                        url = 'offering_view.html';
                         break;
                     case 'Seed':
-                        url = 'seed_view.php';
+                        url = 'seed_view.html';
                         break;
                     case 'Welfare':
-                        url = 'welfare_view.php';
+                        url = 'welfare_view.html';
                         break;
                     default:
                         url = '';
@@ -43,9 +43,9 @@
                 <img src="images/church logo.jpg">
                 <h1>Christian Praise Family Chapel</h1>
                 <form id="sheet">
-                    <label for="view">View sheet of</label>
+                    <!-- <label for="view">View sheet of</label> -->
                     <select id="view" name="view" onchange="redirectToSheet()">
-                        <option value="">View....</option>
+                        <option value="">View sheet....</option>
                         <option value="Membership">Membersip</option>
                         <option value="Tithe">Tithe</option>
                         <option value="Offering">Offering</option>
@@ -58,12 +58,12 @@
         </header>
 
         <main>
-            <a href="membership.html"><button>MEMBERSHIP</button></a>
-            <a href="Tithes.html"><button>TITHES</button></a>
-            <a href="offering.html"><button>OFFERINGS</button></a>
-            <a href="seed.html"><button>SEEDS</button></a>
-            <a href="welfare.html"><button>WELFARE</button></a>
-            <form action="search.php" method="GET">
+            <a href="membership.html?account=user"><button>MEMBERSHIP</button></a>
+            <a href="Tithes.html?account=user"><button>TITHES</button></a>
+            <a href="offering.html?account=user"><button>OFFERINGS</button></a>
+            <a href="seed.html?account=user"><button>SEEDS</button></a>
+            <a href="welfare.html?account=user"><button>WELFARE</button></a>
+            <form action="search_view.html?account=user" method="GET">
                 <input type="text" name="query" placeholder="Type here...." id="search_text">
                 <input type="submit" value="search" id="search_button">
             </form>

@@ -1,41 +1,47 @@
-function search() {
-    const query = document.getElementById('search_text').value;
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM fully loaded and parsed');
 
-    // Fetch data from search.php
-    fetch(`search.php?query=${encodeURIComponent(query)}`)
-        .then(response => response.json())
-        .then(result => {
-            if (result.success) {
-                // Get table body element
-                const tableBody = document.querySelector('#members_table tbody');
-                
-                // Clear any existing rows
-                tableBody.innerHTML = '';
+    const tableBody = document.querySelector('#members_table tbody');
+    if (!tableBody) {
+        console.error('Table body element not found');
+        return;
+    }
 
-                // Iterate over the results and create table rows
-                result.results.forEach(member => {
-                    const row = document.createElement('tr');
+    const urlParams = new URLSearchParams(window.location.search);
+    const query = urlParams.get('query');
 
-                    row.innerHTML = `
-                        <td>${member.id}</td>
-                        <td>${member.name}</td>
-                        <td>${member.gender}</td>
-                        <td>${member.address}</td>
-                        <td>${member.phone}</td>
-                        <td>${member.hometown}</td>
-                    `;
-                    
-                    tableBody.appendChild(row);
-                });
-            } else {
-                alert('No results found or an error occurred');
-            }
-        })
-        .catch(error => {
-            console.error('Fetch error:', error);
-            alert('There was a problem with the fetch operation.');
-        });
-}
+    if (query) {
+        fetch(`search.php?query=${encodeURIComponent(query)}`)
+            .then(response => response.json())
+            .then(result => {
+                if (result.success) {
+                    // Clear any existing rows
+                    tableBody.innerHTML = '';
 
-// Assuming you have a search button or form that calls this function
-document.getElementById('search_button').addEventListener('click', search);
+                    // Iterate over the results and create table rows
+                    result.results.forEach(member => {
+                        const row = document.createElement('tr');
+
+                        row.innerHTML = `
+                            <td>${member.id}</td>
+                            <td>${member.name}</td>
+                            <td>${member.gender}</td>
+                            <td>${member.address}</td>
+                            <td>${member.phone}</td>
+                            <td>${member.hometown}</td>
+                        `;
+
+                        tableBody.appendChild(row);
+                    });
+                } else {
+                    alert('No results found or an error occurred');
+                }
+            })
+            .catch(error => {
+                console.error('Fetch error:', error);
+                alert('There was a problem with the fetch operation.');
+            });
+    } else {
+        alert('No search query provided.');
+    }
+});

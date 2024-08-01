@@ -11,20 +11,20 @@
                 let url = '';
     
                 switch(view) {
-                    case 'Membership':
-                        url = 'membership_view.php';
+                    case 'membership':
+                        url = 'membership_view.html';
                         break;
-                    case 'Tithe':
-                        url = 'tithe_view.php';
+                    case 'tithe':
+                        url = 'tithe_view.html';
                         break;
-                    case 'Offering':
-                        url = 'offering_view.php';
+                    case 'offering':
+                        url = 'offering_view.html';
                         break;
-                    case 'Seed':
-                        url = 'seed_view.php';
+                    case 'seed':
+                        url = 'seed_view.html';
                         break;
-                    case 'Welfare':
-                        url = 'welfare_view.php';
+                    case 'welfare':
+                        url = 'welfare_view.html';
                         break;
                     default:
                         url = '';
@@ -43,14 +43,14 @@
                 <img src="images/church logo.jpg">
                 <h1>Christian Praise Family Chapel</h1>
                 <form id="sheet">
-                    <label for="view">View sheet of</label>
+                    <!-- <label for="view">View </label> -->
                     <select id="view" name="view" onchange="redirectToSheet()">
-                        <option value="">View....</option>
-                        <option value="Membership">Membersip</option>
-                        <option value="Tithe">Tithe</option>
-                        <option value="Offering">Offering</option>
-                        <option value="Seed">Seed</option>
-                        <option value="Welfare">Welfare</option>
+                        <option value="">View sheet....</option>
+                        <option value="membership" id="members">Membership</option>
+                        <option value="tithe" id="tithes">Tithe</option>
+                        <option value="offering" id="offerings">Offering</option>
+                        <option value="seed" id="seeds">Seed</option>
+                        <option value="welfare" id="welfares">Welfare</option>
                     </select>
                 </form>
             </div>
@@ -58,18 +58,18 @@
         </header>
 
         <main>
-            <a href="membership.html"><button>MEMBERSHIP</button></a>
-            <a href="Tithes.html"><button>TITHES</button></a>
-            <a href="offering.html"><button>OFFERINGS</button></a>
-            <a href="seed.html"><button>SEEDS</button></a>
-            <a href="welfare.html"><button>WELFARE</button></a>
+            <a href="membership.html?account=admin"><button>MEMBERSHIP</button></a>
+            <a href="Tithes.html?account=admin"><button>TITHES</button></a>
+            <a href="offering.html?account=admin"><button>OFFERINGS</button></a>
+            <a href="seed.html?account=admin"><button>SEEDS</button></a>
+            <a href="welfare.html?account=admin"><button>WELFARE</button></a>
 
             <section>
-                <a href="change_password.html"><button>Change Password</button></a>
-                <a href="add_new_user.html"><button>Add New User</button></a>
+                <a href="change_password.html?account=admin"><button>Change Password</button></a>
+                <a href="add_new_user.html?account=admin"><button>Add New User</button></a>
             </section>
 
-            <form action="search.php" method="GET">
+            <form action="search_view.html?account=admin" method="GET">
                 <input type="text" name="query" placeholder="Type here...." id="search_text">
                 <input type="submit" value="search" id="search_button">
             </form>
@@ -79,6 +79,6 @@
             <a href="logout.php"><button>Log out</button></a>
         </footer>
 
-        <script src="search.js"></script>
+        <!-- <script src="search.js"></script> -->
     </body>
 </html>

@@ -9,7 +9,7 @@
 </head>
 <body>
     <header>
-        <img src="images/church logo.jpg">
+        <a id="back"><img src="images/church logo.jpg"></a>
         <h1>Christian Praise Family Chapel</h1>
     </header>
 
@@ -22,5 +22,24 @@
 
         <button onclick="post_offering(), hide_view()" id="but">View</button>
     </table>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+                // Get the URL parameter for account type
+                const urlParams = new URLSearchParams(window.location.search);
+                const accountType = urlParams.get('account'); // 'user' or 'admin'
+
+                const backButton = document.getElementById('back');
+
+                // Set the button's href based on the account type
+                if (accountType === 'user') {
+                    backButton.onclick = () => window.location.href = 'user_panel.html';
+                } else if (accountType === 'admin') {
+                    backButton.onclick = () => window.location.href = 'admin_panel.html';
+                } else {
+                    backButton.onclick = () => alert('Invalid account type');
+                }
+            });
+    </script>
 </body>
 </html>

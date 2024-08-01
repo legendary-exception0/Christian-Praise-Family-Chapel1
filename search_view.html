@@ -13,19 +13,40 @@
     </header>
 
     <table id="members_table" border="2">
-        <tr>
-            <th>Member ID</th>
-            <th>Member Name</th>
-            <th>Gender</th>
-            <th>Address</th>
-            <th>Phone Number</th>
-            <th>Hometown</th>
-        </tr>
-        <tr>
+        <thead>
+            <tr>
+                <th>Member ID</th>
+                <th>Member Name</th>
+                <th>Gender</th>
+                <th>Address</th>
+                <th>Phone Number</th>
+                <th>Hometown</th>
+            </tr>
+        </thead>
 
-        </tr>
+        <tbody>
+
+        </tbody>
     </table>
-</body>
 
-<!-- <script src="search.js"></script> -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+                // Get the URL parameter for account type
+                const urlParams = new URLSearchParams(window.location.search);
+                const accountType = urlParams.get('account'); // 'user' or 'admin'
+
+                const backButton = document.getElementById('back');
+
+                // Set the button's href based on the account type
+                if (accountType === 'user') {
+                    backButton.onclick = () => window.location.href = 'user_panel.html';
+                } else if (accountType === 'admin') {
+                    backButton.onclick = () => window.location.href = 'admin_panel.html';
+                } else {
+                    backButton.onclick = () => alert('Invalid account type');
+                }
+            });
+    </script>
+    <script src="search.js"></script>
+</body>
 </html>

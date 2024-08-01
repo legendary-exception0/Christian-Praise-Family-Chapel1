@@ -1,5 +1,4 @@
 <?php
-// fetch_data.php
 header('Content-Type: application/json');
 
 // Allow requests from any origin
@@ -30,18 +29,16 @@ if ($conn->connect_error) {
     die(json_encode(['success' => false, 'error' => 'Connection failed: ' . $conn->connect_error]));
 }
 
-if (isset($_GET['search_text'])) {
-    $query = $_GET['search_text'];
+if (isset($_GET['query'])) {
+    $query = $_GET['query'];
 
-    // Prevent SQL injection
-    $query = $conn->real_escape_string($query);
-
-    // Perform the search query
-    $sql = "SELECT * FROM addmember WHERE name LIKE '%$query%'";
-    $result = $conn->query($sql);
-
-    if ($result) {
-        // Create an array to hold the result data
+    // Perform the search query using a prepared statement to prevent SQL injection
+    $stmt = $conn->prepare("SELECT * FROM addmember WHERE name LIKE ?");
+    $likeQuery = "%$query%";
+    $stmt->bind_param("s", $likeQuery);
+    
+    if ($stmt->execute()) {
+        $result = $stmt->get_result();
         $data = [];
 
         // Fetch all results
@@ -51,10 +48,13 @@ if (isset($_GET['search_text'])) {
 
         // Respond with the search results
         echo json_encode(['success' => true, 'results' => $data]);
-
     } else {
-        echo json_encode(['success' => false, 'error' => 'Query failed: ' . $conn->error]);
+        echo json_encode(['success' => false, 'error' => 'Query execution failed: ' . $stmt->error]);
     }
+
+    $stmt->close();
+} else {
+    echo json_encode(['success' => false, 'error' => 'No search query provided.']);
 }
 
 $conn->close();
