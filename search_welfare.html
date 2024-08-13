@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search</title>
+    <link rel="stylesheet" href="view.css">
+</head>
+<body>
+    <header>
+        <a id="back"><img src="images/church logo.jpg"></a>
+        <h1>Christian Praise <span>Family Chapel</span></h1>
+    </header>
+
+    <div>Search <span>Welfare</span></div>
+
+    <table id="members_table" border="2">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Member Name</th>
+                <th>Amount</th>
+                <th>Date</th>
+                <th>Phone Number</th>
+                <th>Address</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+        </tbody>
+    </table>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+                // Get the URL parameter for account type
+                const urlParams = new URLSearchParams(window.location.search);
+                const accountType = urlParams.get('account'); // 'user' or 'admin'
+
+                const backButton = document.getElementById('back');
+
+                // Set the button's href based on the account type
+                if (accountType === 'user') {
+                    backButton.onclick = () => window.location.href = 'user_panel.html';
+                } else if (accountType === 'admin') {
+                    backButton.onclick = () => window.location.href = 'admin_panel.html';
+                } else {
+                    backButton.onclick = () => alert('Invalid account type');
+                }
+            });
+    </script>
+    <script src="search_welfare.js"></script>
+</body>
+</html>

@@ -12,19 +12,19 @@
     
                 switch(view) {
                     case 'membership':
-                        url = 'membership_view.html';
+                        url = 'membership_view.html?account=admin';
                         break;
                     case 'tithe':
-                        url = 'tithe_view.html';
+                        url = 'tithe_view.html?account=admin';
                         break;
                     case 'offering':
-                        url = 'offering_view.html';
+                        url = 'offering_view.html?account=admin';
                         break;
                     case 'seed':
-                        url = 'seed_view.html';
+                        url = 'seed_view.html?account=admin';
                         break;
                     case 'welfare':
-                        url = 'welfare_view.html';
+                        url = 'welfare_view.html?account=admin';
                         break;
                     default:
                         url = '';
@@ -33,6 +33,31 @@
                 if (url) {
                     window.location.href = url;
                 }
+            }
+
+            function select_search() {
+                const view = document.getElementById('search_select').value;
+                const form = document.querySelector('form');
+                let url = '';
+
+                switch(view){
+                    case 'members':
+                        url = 'search_view.html?account=admin'
+                        break;
+
+                    case 'tithe':
+                        url = 'search_tithe.html?account=admin'
+                        break;
+
+                    case 'welfare':
+                        url = 'search_welfare.html?account=admin'
+                        break;
+
+                    default:
+                        url = 'search_view.html?account=admin';
+                }
+
+                form.action = url;
             }
         </script>
     </head>
@@ -70,8 +95,14 @@
             </section>
 
             <form action="search_view.html?account=admin" method="GET">
+                <input type="hidden" name="account" value="admin">
                 <input type="text" name="query" placeholder="Type here...." id="search_text">
-                <input type="submit" value="search" id="search_button">
+                <input type="submit" value="search" id="search_button" onclick="select_search()">
+                <select id="search_select">
+                    <option value="members">Members</option>
+                    <option value="tithe">Tithe</option>
+                    <option value="welfare">Welfare</option>
+                </select>
             </form>
         </main>
 

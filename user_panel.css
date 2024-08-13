@@ -126,12 +126,18 @@ main form{
     font-size: 15px;
     padding: 2px;
     padding-left: 5px;
-    border-radius: 0rem;
+    border-radius: 0.2rem;
+    border-color: purple;
     cursor: text;
 }
 
 #search_text:hover{
     transform: scale(1.0);
+}
+
+#search_text:focus{
+    background-color: purple;
+    color: yellow;
 }
 
 main form input{
@@ -172,4 +178,10 @@ footer a button:hover{
     background-color: purple;
     border: none;
     color: yellow;
+}
+
+#search_select{
+    height: 3rem;
+    border-radius: 0.4rem;
+    border-color: gray;
 }

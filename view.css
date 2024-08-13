@@ -48,6 +48,7 @@ table{
     align-self: center;
     font-size: 1.2rem;
     border-color: purple;
+    border-radius: 0.2rem;
 }
 
 #but{
@@ -55,6 +56,10 @@ table{
     width: 4rem;
     align-self: flex-end;
     margin-right: 1.5rem;
+    border-color: purple;
+    /* color: green; */
+    border-radius: 0.4rem;
+    font-weight: bold;
 }
 
 #but:hover{
@@ -62,4 +67,15 @@ table{
     background-color: purple;
     border: none;
     color: yellow;
+}
+
+div{
+    align-self: center;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 549;
+}
+
+span{
+    color: red;
 }
