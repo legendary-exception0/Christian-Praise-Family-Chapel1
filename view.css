@@ -15,6 +15,8 @@ body{
     display: flex;
     flex-direction: column;
     gap: 5%;
+    background-image: url('images/Grey white abstract background geometry shine and layer element vector for presentation design_ Suit for business, corporate, institution, party, festive, seminar, and talks_.jpg');
+    background-size: cover;
 }
 
 header{
@@ -31,6 +33,10 @@ header a img{
     width: 100%;
 }
 
+header span{
+    color: red;
+}
+
 header a{
     height: 100%;
     width: 10%;
@@ -41,6 +47,7 @@ table{
     height: calc(100%-25%);
     align-self: center;
     font-size: 1.2rem;
+    border-color: purple;
 }
 
 #but{
@@ -48,4 +55,11 @@ table{
     width: 4rem;
     align-self: flex-end;
     margin-right: 1.5rem;
+}
+
+#but:hover{
+    transform: scale(1.05);
+    background-color: purple;
+    border: none;
+    color: yellow;
 }

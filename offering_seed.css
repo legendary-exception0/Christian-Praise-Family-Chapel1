@@ -14,6 +14,8 @@ body{
     height: 100%;
     display: flex;
     flex-direction: column;
+    background-size: cover;
+    background-image: url('images/Grey white abstract background geometry shine and layer element vector for presentation design_ Suit for business, corporate, institution, party, festive, seminar, and talks_.jpg');
 }
 
 header{
@@ -36,15 +38,22 @@ header a{
     width: 10%;
 }
 
+header span{
+    color: red;
+}
+
 main{
     align-self: center;
-    width: 40%;
+    width: 35%;
     height: 70%;
     display: flex;
     flex-direction: column;
     /* justify-content: center;
     align-items: center; */
-    border: 2px gray solid;
+    border: 2px purple solid;
+    border-radius: 1rem;
+    box-shadow: 0px 0px 2px 1px;
+    background-color: whitesmoke;
 }
 
 main div{
@@ -52,7 +61,12 @@ main div{
     height: 8%;
     text-align: center;
     font-size: 1.8rem;
+    font-family: sans-serif;
     margin-top: 0.5rem;
+}
+
+main div span{
+    color: red;
 }
 
 main section{
@@ -62,6 +76,7 @@ main section{
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    color: green;
 }
 
 #form{
@@ -83,6 +98,7 @@ main section{
     height: 15%;
     padding: 0.2rem;
     font-size: 1.2rem;
+    border-radius: 0.4rem;
 }
 
 #form input[type='submit']{
@@ -91,4 +107,14 @@ main section{
     font-size: 1rem;
     align-self: center;
     margin-top: 1rem;
+    color: green;
+    cursor: pointer;
+    border-color: purple;
+}
+
+#form input[type='submit']:hover{
+    transform: scale(1.1);
+    background-color: purple;
+    border: none;
+    color: yellow;
 }
