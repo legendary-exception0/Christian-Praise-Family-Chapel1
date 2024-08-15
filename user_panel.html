@@ -37,7 +37,7 @@
 
             function select_search() {
                 const view = document.getElementById('search_select').value;
-                const form = document.querySelector('form');
+                const form = document.getElementById('search_form');
                 let url = '';
 
                 switch(view){
@@ -88,11 +88,11 @@
             <a href="offering.html?account=user"><button>OFFERINGS</button></a>
             <a href="seed.html?account=user"><button>SEEDS</button></a>
             <a href="welfare.html?account=user"><button>WELFARE</button></a>
-            <form method="GET">
+            <form action="#" method="GET" onsubmit="select_search()" id="search_form">
                 <input type="hidden" name="account" value="user">
                 <input type="text" name="query" placeholder="Type here...." id="search_text">
-                <input type="submit" value="search" id="search_button" onclick="select_search()">
-                <select id="search_select">
+                <input type="submit" value="search" id="search_button">
+                <select id="search_select" onchange="select_search()">
                     <option value="members">Members</option>
                     <option value="tithe">Tithe</option>
                     <option value="welfare">Welfare</option>
