@@ -37,24 +37,24 @@
 
             function select_search() {
                 const view = document.getElementById('search_select').value;
-                const form = document.querySelector('form');
+                const form = document.getElementById('search_form');
                 let url = '';
 
                 switch(view){
                     case 'members':
-                        url = 'search_view.html?account=admin'
+                        url = 'search_view.html?account=user'
                         break;
 
                     case 'tithe':
-                        url = 'search_tithe.html?account=admin'
+                        url = 'search_tithe.html?account=user'
                         break;
 
                     case 'welfare':
-                        url = 'search_welfare.html?account=admin'
+                        url = 'search_welfare.html?account=user'
                         break;
 
                     default:
-                        url = 'search_view.html?account=admin';
+                        url = 'search_view.html?account=user';
                 }
 
                 form.action = url;
@@ -94,11 +94,11 @@
                 <a href="add_new_user.html?account=admin"><button>Add New User</button></a>
             </section>
 
-            <form action="search_view.html?account=admin" method="GET">
+            <form action="" method="GET" id="search_form" onsubmit="select_search()">
                 <input type="hidden" name="account" value="admin">
                 <input type="text" name="query" placeholder="Type here...." id="search_text">
-                <input type="submit" value="search" id="search_button" onclick="select_search()">
-                <select id="search_select">
+                <input type="submit" value="search" id="search_button">
+                <select id="search_select" onchange="select_search()">
                     <option value="members">Members</option>
                     <option value="tithe">Tithe</option>
                     <option value="welfare">Welfare</option>
