@@ -31,6 +31,18 @@ header{
 header a img{
     height: 100%;
     width: 100%;
+    cursor: pointer;
+}
+
+header a img:hover{
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    border-radius: 0.8rem;
+}
+
+header a img:active{
+    transform: scale(0.98);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 header span{
@@ -49,9 +61,10 @@ table{
     font-size: 1.2rem;
     border-color: purple;
     border-radius: 0.2rem;
+    padding-left: 5px;
 }
 
-#but{
+#but, .ed-btn, .del-btn{
     height: 2rem;
     width: 4rem;
     align-self: flex-end;
@@ -62,7 +75,7 @@ table{
     font-weight: bold;
 }
 
-#but:hover{
+#but:hover, .ed-btn:hover, .del-btn:hover{
     transform: scale(1.05);
     background-color: purple;
     border: none;

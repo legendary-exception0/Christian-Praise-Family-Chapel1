@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+           Update Welfare Page
+        </title>
+        <link rel="stylesheet" href="tithes.css">
+    </head>
+
+    <body>
+        <header>
+            <a id="back"><img src="images/church logo.jpg"></a>
+            <h1>Christian Praise <span>Family Chapel</span></h1>
+        </header>
+
+        <main>
+            <div><span>Welfare</span> Table</div>
+            <section>
+                <form action="#" method="post" id="form">
+                    <input type="hidden" name="id" id="member_id">
+
+                    <div>
+                        <label for="member_name">Name:</label>
+                        <input type="text" name="member_name" id="member_name">
+                    </div>
+
+                    <div>
+                        <label for="welfare_amount">Amount:</label>
+                        <input type="text" name="welfare_amount" id="tithe_amount">
+                    </div>
+                    
+                    <div>
+                        <label for="welfare_day">Day:</label>
+                        <input type="date" name="welfare_day" id="tithe_day">
+                    </div>
+                    
+                    <div>
+                        <label for="member_phone">Telephone no.:</label>
+                        <input type="number" name="member_phone" id="member_phone">
+                    </div>
+                    
+                    <div>
+                        <label for="member_address">Address:</label>
+                        <input type="text" name="member_address" id="member_address">
+                    </div>
+                    
+                    <input type="submit" value="Update Welfare" id="submit">
+                </form>
+            </section>
+        </main>
+
+    <script>
+        document.getElementById('form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(this);
+            const data = new URLSearchParams(formData);
+
+            fetch('btn_ed_welfare.php', {
+                method: 'POST',
+                body: data
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(result => {
+                if (result.success) {
+                    alert('Welfare updated successfully');
+                } else {
+                    alert('Error: ' + result.error);
+                }
+            })
+            .catch(error => {
+                console.error('Fetch error:', error);
+                alert('There was a problem with the fetch operation.');
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const memberId = urlParams.get('id');
+
+            if (memberId) {
+                fetch(`get_welfare.php?id=${memberId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            document.getElementById('member_id').value = data.welfare.id;
+                            document.getElementById('member_name').value = data.welfare.name;
+                            document.getElementById('tithe_day').value = data.welfare.day;
+                            document.getElementById('tithe_amount').value = data.welfare.amount;
+                            document.getElementById('member_phone').value = data.welfare.phone;
+                            document.getElementById('member_address').value = data.welfare.address;
+                        } else {
+                            alert('Failed to fetch welfare data');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching welfare data:', error);
+                    });
+            } else {
+                alert('No member ID provided.');
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const backButton = document.getElementById('back');
+            backButton.onclick = () => window.location.href = 'welfare_view.html'
+        });
+    </script>
+</body>
+</html>

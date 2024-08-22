@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Membership Page</title>
+    <link rel="stylesheet" href="membership.css">
+</head>
+<body>
+    <header>
+        <a id="back"><img src="images/church logo.jpg"></a>
+        <h1>Christian Praise <span>Family Chapel</span></h1>
+    </header>
+
+    <main>
+        <div><span>Membership</span> Table</div>
+        <section>
+            <form id="form">
+                <input type="hidden" name="id" id="member_id">
+
+                <label for="member_name">Name:</label>
+                <input type="text" name="member_name" id="member_name">
+
+                <label for="member_gender">Gender:</label>
+                <input type="text" name="member_gender" id="member_gender">
+
+                <label for="member_address">Address:</label>
+                <input type="text" name="member_address" id="member_address">
+
+                <label for="member_phone">Telephone no.:</label>
+                <input type="number" name="member_phone" id="member_phone">
+
+                <label for="member_hometown">Hometown:</label>
+                <input type="text" name="member_hometown" id="member_hometown">
+                
+                <input type="submit" value="Update Member" id="submit">
+            </form>
+        </section>
+    </main>
+
+    <script>
+        document.getElementById('form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(this);
+            const data = new URLSearchParams(formData);
+
+            fetch('btn_ed.php', {
+                method: 'POST',
+                body: data
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(result => {
+                if (result.success) {
+                    alert('Member updated successfully');
+                } else {
+                    alert('Error: ' + result.error);
+                }
+            })
+            .catch(error => {
+                console.error('Fetch error:', error);
+                alert('There was a problem with the fetch operation.');
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const memberId = urlParams.get('id');
+
+            if (memberId) {
+                fetch(`get_member.php?id=${memberId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            document.getElementById('member_id').value = data.member.id;
+                            document.getElementById('member_name').value = data.member.name;
+                            document.getElementById('member_gender').value = data.member.gender;
+                            document.getElementById('member_address').value = data.member.address;
+                            document.getElementById('member_phone').value = data.member.phone;
+                            document.getElementById('member_hometown').value = data.member.hometown;
+                        } else {
+                            alert('Failed to fetch member data');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching member data:', error);
+                    });
+            } else {
+                alert('No member ID provided.');
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const backButton = document.getElementById('back');
+            backButton.onclick = () => window.location.href = 'membership_view.html'
+        });
+    </script>
+</body>
+</html>

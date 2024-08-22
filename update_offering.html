@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Offering Page</title>
+    <link rel="stylesheet" href="offering_seed.css">
+</head>
+<body>
+    <header>
+        <a id="back"><img src="images/church logo.jpg"></a>
+        <h1>Christian Praise <span>Family Chapel</span></h1>
+    </header>
+
+    <main>
+        <div><span>Offering</span> Sheet</div>
+        <section>
+            <form method="post" id="form">
+                <input type="hidden" name="id" id="member_id">
+
+                <label for="Offering_day">Day:</label>
+                <input type="date" name="Offering_day" id="Offering_day" required>
+
+                <label for="Offering_amount">Amount:</label>
+                <input type="number" name="Offering_amount" id="Offering_amount" required>
+
+                <input type="submit" value="Update Offering" id="submit">
+            </form>
+        </section>
+    </main>
+
+    <script>
+        document.getElementById('form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(this);
+            const data = new URLSearchParams(formData);
+
+            fetch('btn_ed_offering.php', {
+                method: 'POST',
+                body: data
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(result => {
+                if (result.success) {
+                    alert('Offering updated successfully');
+                } else {
+                    alert('Error: ' + result.error);
+                }
+            })
+            .catch(error => {
+                console.error('Fetch error:', error);
+                alert('There was a problem with the fetch operation.');
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const memberId = urlParams.get('id');
+
+            if (memberId) {
+                fetch(`get_offering.php?id=${memberId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            document.getElementById('member_id').value = data.offering.id;
+                            document.getElementById('Offering_day').value = data.offering.day;
+                            document.getElementById('Offering_amount').value = data.offering.amount;
+                        } else {
+                            alert('Failed to fetch offering data');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching offering data:', error);
+                    });
+            } else {
+                alert('No member ID provided.');
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const backButton = document.getElementById('back');
+            backButton.onclick = () => window.location.href = 'offering_view.html'
+        });
+    </script>
+
+</body>
+</html>

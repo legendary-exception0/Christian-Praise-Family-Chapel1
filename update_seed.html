@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Update Seed Page
+        </title>
+        <link rel="stylesheet" href="offering_seed.css">
+    </head>
+
+    <body>
+        <header>
+            <a id="back"><img src="images/church logo.jpg"></a>
+            <h1>Christian Praise <span>Family Chapel</span></h1>
+        </header>
+
+        <main>
+            <div><span>Seed</span> Sheet</div>
+            <section>
+                <form action="#" method="post" id="form">
+                    <input type="hidden" name="id" id="member_id">
+
+                    <label for="Seed_day">Day:</label>
+                    <input type="date" name="seed_day" id="seed_day">
+
+                    <label for="seed_amount">Amount:</label>
+                    <input type="text" name="seed_amount" id="seed_amount">
+
+                    <input type="submit" value="Update Seed" id="submit">
+                </form>
+            </section>
+        </main>
+
+    <script>
+        document.getElementById('form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(this);
+            const data = new URLSearchParams(formData);
+
+            fetch('btn_ed_seed.php', {
+                method: 'POST',
+                body: data
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(result => {
+                if (result.success) {
+                    alert('Seed updated successfully');
+                } else {
+                    alert('Error: ' + result.error);
+                }
+            })
+            .catch(error => {
+                console.error('Fetch error:', error);
+                alert('There was a problem with the fetch operation.');
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const memberId = urlParams.get('id');
+
+            if (memberId) {
+                fetch(`get_seed.php?id=${memberId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            document.getElementById('member_id').value = data.seed.id;
+                            document.getElementById('seed_day').value = data.seed.day;
+                            document.getElementById('seed_amount').value = data.seed.amount;
+                        } else {
+                            alert('Failed to fetch seed data');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching seed data:', error);
+                    });
+            } else {
+                alert('No member ID provided.');
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const backButton = document.getElementById('back');
+            backButton.onclick = () => window.location.href = 'seed_view.html'
+        });
+    </script>
+</body>
+</html>
