@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Membership Table</title>
     <link rel="stylesheet" href="view.css">
-    <script src="fetch_script.js"></script>
 </head>
 <body>
     <header>
@@ -13,6 +12,7 @@
         <h1>Christian Praise <span>Family Chapel</span></h1>
     </header>
 
+    <h1>Membership View Page</h1>
     <table id="members_table" border="2">
         <tr>
             <th>Member ID</th>
@@ -44,7 +44,10 @@
                 } else {
                     backButton.onclick = () => alert('Invalid account type');
                 }
+
+                console.log(accountType);
             });
     </script>
+    <script src="fetch_script.js"></script>
 </body>
 </html>

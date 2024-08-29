@@ -14,9 +14,15 @@ body{
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 5%;
+    gap: 0.8rem;
+    justify-content: space-evenly;
     background-image: url('images/Grey white abstract background geometry shine and layer element vector for presentation design_ Suit for business, corporate, institution, party, festive, seminar, and talks_.jpg');
     background-size: cover;
+}
+
+h1{
+    align-self: center;
+    color: rgb(137, 117, 117);
 }
 
 header{
@@ -28,10 +34,15 @@ header{
     gap: 2%;
 }
 
+header h1{
+    color: black;
+}
+
 header a img{
     height: 100%;
     width: 100%;
     cursor: pointer;
+    color: black;
 }
 
 header a img:hover{
@@ -64,7 +75,11 @@ table{
     padding-left: 5px;
 }
 
-#but, .ed-btn, .del-btn{
+table tr td{
+    padding: 5px;
+}
+
+#but, .ed-btn,.off-ed-btn,.w-ed-btn,.t-ed-btn,.s-ed-btn, .del-btn,.off-del-btn,.w-del-btn,.t-del-btn,.s-del-btn{
     height: 2rem;
     width: 4rem;
     align-self: flex-end;
@@ -75,7 +90,7 @@ table{
     font-weight: bold;
 }
 
-#but:hover, .ed-btn:hover, .del-btn:hover{
+#but:hover,.ed-btn:hover,.off-ed-btn:hover,.w-ed-btn:hover,.t-ed-btn:hover,.s-ed-btn:hover, .del-btn:hover,.off-del-btn:hover,.w-del-btn:hover,.t-del-btn:hover,.s-del-btn:hover{
     transform: scale(1.05);
     background-color: purple;
     border: none;
@@ -91,4 +106,47 @@ div{
 
 span{
     color: red;
+}
+
+.total{
+    align-self: flex-end;
+    margin-right: 10px;
+    border: 1px solid black;
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    gap: 10px;
+    height: 3.5rem;
+    padding: 5px;
+    border-radius: 0.5rem;
+}
+
+#total_amount{
+    height: 2.5rem;
+    padding: 5px;
+    font-size: 1.2rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    border-color: purple;
+    color: rgb(137, 117, 117);
+    font-weight: bold;
+
+}
+
+#total_amount:hover{
+    color: yellow;
+    background-color: purple;
+}
+
+#total_amount:active{
+    transform: scale(0.8);
+}
+
+#amount{
+    border: 1px solid black;
+    height: 2.5rem;
+    text-align: center;
+    min-width: 10rem;
+    border-radius: 0.5rem;
+    color: rgb(137, 117, 117);
 }

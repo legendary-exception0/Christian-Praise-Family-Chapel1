@@ -12,6 +12,7 @@
         <a id="back"><img src="images/church logo.jpg"></a>
         <h1>Christian Praise <span>Family Chapel</span></h1>
     </header>
+    <h1>Tithe View Page</h1>
     
     <table id="tithe_table" border="2">
         <tr>
@@ -25,6 +26,11 @@
 
         <button onclick="post_tithe(), hide_view()" id="but">View</button>
     </table>
+
+    <div class="total">
+        <button id="total_amount">Total Amount</button>
+        <p id="amount">Ghc 00.00</p>
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {

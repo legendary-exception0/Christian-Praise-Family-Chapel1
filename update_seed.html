@@ -14,7 +14,7 @@
         </header>
 
         <main>
-            <div><span>Seed</span> Sheet</div>
+            <div><span>Update</span> Seed <span>Table</span></div>
             <section>
                 <form action="#" method="post" id="form">
                     <input type="hidden" name="id" id="member_id">
@@ -86,7 +86,10 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             const backButton = document.getElementById('back');
-            backButton.onclick = () => window.location.href = 'seed_view.html'
+            const urlParams = new URLSearchParams(window.location.search);
+            const accountType = urlParams.get('account');
+
+            backButton.onclick = () => {window.location.href = `seed_view.html?account=${accountType}`};
         });
     </script>
 </body>

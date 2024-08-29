@@ -11,7 +11,7 @@
     </header>
 
     <main>
-        <div><span>Offering</span> Sheet</div>
+        <div><span>Update</span> Offering <span>Table</span></div>
         <section>
             <form method="post" id="form">
                 <input type="hidden" name="id" id="member_id">
@@ -83,7 +83,11 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             const backButton = document.getElementById('back');
-            backButton.onclick = () => window.location.href = 'offering_view.html'
+            const urlParams = new URLSearchParams(window.location.search);
+            const accountType = urlParams.get('account');
+
+            backButton.onclick = () => {window.location.href = `offering_view.html?account=${accountType}`};
+            
         });
     </script>
 

@@ -11,6 +11,7 @@
         <a id="back"><img src="images/church logo.jpg"></a>
         <h1>Christian Praise <span>Family Chapel</span></h1>
     </header>
+    <h1>Welfare Search Page</h1>
 
     <div>Search <span>Welfare</span></div>
 
@@ -31,6 +32,11 @@
         </tbody>
     </table>
 
+    <div class="total">
+        <button id="total_amount">Total Amount</button>
+        <p id="amount">Ghc 00.00</p>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
                 // Get the URL parameter for account type
@@ -50,5 +56,6 @@
             });
     </script>
     <script src="search_welfare.js"></script>
+    <script src="fetch_script.js"></script>
 </body>
 </html>

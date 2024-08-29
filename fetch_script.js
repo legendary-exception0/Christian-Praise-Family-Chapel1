@@ -10,24 +10,78 @@ function hide_view(){
     but.style.display = 'none';
 }
 
+// document.addEventListener('DOMContentLoaded', function() {
+//     console.log('Script Loaded');
+//     document.addEventListener('click', function(event) {
+//         console.log('Click detected');
+//         if (event.target.classList.contains('ed-btn')) {
+//             console.log('ed-btn clicked');
+//         }
+//     });
+// });
+
+document.addEventListener('click', function(event) {
+    if (event.target.id === 'total_amount') {
+        // Assuming you calculate the total amount from the table rows
+        const table = document.getElementById('offering_table');
+        let total = 0;
+
+        // Loop through each row in the table (excluding the header)
+        for (let i = 1, row; row = table.rows[i]; i++) {
+            // Assuming the amount is in the third column (index 2)
+            const amountCell = row.cells[2];
+            const amount = parseFloat(amountCell.textContent);
+            total += amount;
+        }
+
+        // Update the amount displayed
+        const amountElement = document.getElementById('amount');
+        amountElement.textContent = `Ghc ${total.toFixed(2)}`;
+        amountElement.style.color = 'yellow';
+        amountElement.style.backgroundColor = 'purple';
+    }
+});
+
+
 document.addEventListener('click', function(event) {
     if (event.target.classList.contains('ed-btn')) {
         const row = event.target.closest('tr');
-        const id = row.cells[0].innerText; // Assuming the ID is in the first cell
+        const id = row.cells[0].innerText; 
+        const urlParams = new URLSearchParams(window.location.search);
+        const accountType = urlParams.get('account');
+
+        console.log('Account Type:', accountType);
+
+        if (!accountType) {
+            alert('Account type cannot be recognized. Please Sign in as an Admin or User.');
+            return;
+        }
 
         if (confirm('Are you sure you want to edit this record?')) {
-            window.location.href = `update_member.html?id=${id}`;
+            window.location.href = `update_member.html?id=${id}&account=${accountType}`;
         }
     }
 });
+
+
 
 document.addEventListener('click', function(event) {
     if (event.target.classList.contains('off-ed-btn')) {
         const row = event.target.closest('tr');
         const id = row.cells[0].innerText; // Assuming the ID is in the first cell
 
+        const urlParams = new URLSearchParams(window.location.search);
+        const accountType = urlParams.get('account');
+
+        console.log('Account Type:', accountType);
+
+        if (!accountType) {
+            alert('Account type cannot be recognized. Please Sign in as an Admin or User.');
+            return;
+        }
+
         if (confirm('Are you sure you want to edit this record?')) {
-            window.location.href = `update_offering.html?id=${id}`;
+            window.location.href = `update_offering.html?id=${id}&account=${accountType}`;
         }
     }
 });
@@ -36,9 +90,18 @@ document.addEventListener('click', function(event) {
     if (event.target.classList.contains('t-ed-btn')) {
         const row = event.target.closest('tr');
         const id = row.cells[0].innerText; // Assuming the ID is in the first cell
+        const urlParams = new URLSearchParams(window.location.search);
+        const accountType = urlParams.get('account');
+
+        console.log('Account Type:', accountType);
+
+        if (!accountType) {
+            alert('Account type cannot be recognized. Please Sign in as an Admin or User.');
+            return;
+        }
 
         if (confirm('Are you sure you want to edit this record?')) {
-            window.location.href = `update_tithe.html?id=${id}`;
+            window.location.href = `update_tithe.html?id=${id}&account=${accountType}`;
         }
     }
 });
@@ -47,9 +110,18 @@ document.addEventListener('click', function(event) {
     if (event.target.classList.contains('s-ed-btn')) {
         const row = event.target.closest('tr');
         const id = row.cells[0].innerText; // Assuming the ID is in the first cell
+        const urlParams = new URLSearchParams(window.location.search);
+        const accountType = urlParams.get('account');
+
+        console.log('Account Type:', accountType);
+
+        if (!accountType) {
+            alert('Account type cannot be recognized. Please Sign in as an Admin or User.');
+            return;
+        }
 
         if (confirm('Are you sure you want to edit this record?')) {
-            window.location.href = `update_seed.html?id=${id}`;
+            window.location.href = `update_seed.html?id=${id}&account=${accountType}`;
         }
     }
 });
@@ -58,9 +130,18 @@ document.addEventListener('click', function(event) {
     if (event.target.classList.contains('w-ed-btn')) {
         const row = event.target.closest('tr');
         const id = row.cells[0].innerText; // Assuming the ID is in the first cell
+        const urlParams = new URLSearchParams(window.location.search);
+        const accountType = urlParams.get('account');
+
+        console.log('Account Type:', accountType);
+
+        if (!accountType) {
+            alert('Account type cannot be recognized. Please Sign in as an Admin or User.');
+            return;
+        }
 
         if (confirm('Are you sure you want to edit this record?')) {
-            window.location.href = `update_welfare.html?id=${id}`;
+            window.location.href = `update_welfare.html?id=${id}&account=${accountType}`;
         }
     }
 });
@@ -214,6 +295,7 @@ function post_member() {
                 cell6.innerHTML = member.hometown;
                 cell7.innerHTML = '<button class="ed-btn">Edit</button> <button class="del-btn">Delete</button>';
             });
+
         })
         .catch(error => console.error('Error fetching data:', error));
 }

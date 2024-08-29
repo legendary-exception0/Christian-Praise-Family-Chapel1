@@ -13,7 +13,7 @@
     </header>
 
     <main>
-        <div><span>Membership</span> Table</div>
+        <div><span>Update</span> Member <span>Table</span></div>
         <section>
             <form id="form">
                 <input type="hidden" name="id" id="member_id">
@@ -97,7 +97,10 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             const backButton = document.getElementById('back');
-            backButton.onclick = () => window.location.href = 'membership_view.html'
+            const urlParams = new URLSearchParams(window.location.search);
+            const accountType = urlParams.get('account');
+
+            backButton.onclick = () => {window.location.href = `membership_view.html?account=${accountType}`};
         });
     </script>
 </body>
